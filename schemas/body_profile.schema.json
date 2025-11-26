@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BodyProfile",
+  "type": "object",
+  "required": ["id", "createdAt", "updatedAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "ageRange": { "type": "string" },
+    "genderIdentity": { "type": "string" },
+    "morphologyNotes": { "type": "string" },
+    "measurements": {
+      "type": "object",
+      "properties": {
+        "heightCm": { "type": "number" },
+        "weightKg": { "type": "number" },
+        "bustCm": { "type": "number" },
+        "waistCm": { "type": "number" },
+        "hipsCm": { "type": "number" },
+        "thighCircCm": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "sensoryMap": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["area", "description", "intensity"],
+        "properties": {
+          "area": {
+            "type": "string",
+            "enum": ["ABDOMEN", "THIGHS", "BUST", "BACK", "ARMS", "NECK", "HIPS"]
+          },
+          "description": { "type": "string" },
+          "intensity": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "emotionalTag": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "traumaHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["shortNarrative", "relatedBodyAreas"],
+        "properties": {
+          "ageAtEvent": { "type": "integer", "minimum": 0 },
+          "shortNarrative": { "type": "string" },
+          "relatedBodyAreas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["ABDOMEN", "THIGHS", "BUST", "BACK", "ARMS", "NECK", "HIPS"]
+            }
+          },
+          "designNotes": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "movementContext": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
