@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExperienceSession",
+  "type": "object",
+  "required": [
+    "id",
+    "bodyProfileId",
+    "garmentModelId",
+    "context",
+    "date",
+    "emotionalState",
+    "metrics"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "bodyProfileId": { "type": "string" },
+    "garmentModelId": { "type": "string" },
+    "context": { "type": "string" },
+    "date": { "type": "string", "format": "date-time" },
+    "emotionalState": {
+      "type": "object",
+      "required": ["before", "after"],
+      "properties": {
+        "before": { "type": "string" },
+        "after": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "sensoryFeedback": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "nonVerbalObservations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "metrics": {
+      "type": "object",
+      "required": [
+        "comfortScore",
+        "presenceScore",
+        "autonomyScore",
+        "emotionalLongevityScore"
+      ],
+      "properties": {
+        "comfortScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "presenceScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "autonomyScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "emotionalLongevityScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "postureChangeNotes": { "type": "string" },
+        "cognitiveNoiseReductionNotes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "notesForDesignTeam": { "type": "string" }
+  },
+  "additionalProperties": false
+}
